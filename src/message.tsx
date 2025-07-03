@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {Button} from "primereact/button";
+import {InputText} from "primereact/inputtext";
 
 const Message = ({showMessage}:{showMessage:boolean}) => {
     const [message, setMessage] = useState('');
@@ -20,10 +22,10 @@ const Message = ({showMessage}:{showMessage:boolean}) => {
         <div>
             {showMessage &&
                 <form onSubmit={onSubmit}>
-                    <input onChange={(value) => setMessage(value.target.value)} value={message}
+                    <InputText onChange={(value) => setMessage(value.target.value)} value={message}
                            placeholder={'this is message'}/>
-                    <input onChange={(value) => setName(value.target.value)} value={name} placeholder={'this is name'}/>
-                    <button type={"submit"}>submit</button>
+                    <InputText onChange={(value) => setName(value.target.value)} value={name} placeholder={'this is name'}/>
+                    <Button type={'submit'} icon="pi pi-check" label={'Submit'} iconPos="right" />
                     <h2>{value.message}</h2>
                     <h2>{value.name}</h2>
                 </form>
