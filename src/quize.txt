@@ -1,0 +1,20 @@
+import {useState} from "react";
+
+const Quize1 = ()=> {
+    const [number, setNumber] = useState(0);
+    const onChangeNumber = (value)=>{
+        if(number>=0){
+        setNumber(number+value)
+        }
+    }
+
+    return (
+        <div>
+            <button onClick={()=> onChangeNumber(-1)}  >-</button>
+            <h2>{number}</h2>
+            <button onClick={()=> onChangeNumber(+1)}  >+</button>
+        </div>
+    )
+}
+export default Quize1
+

@@ -7,7 +7,7 @@ const PizzaOrder = () => {
     const [quantities, setQuantities] = useState({});
     const [cart, setCart] = useState([]);
     const [orderNumber, setOrderNumber] = useState(1);
-
+console.log({cart});
     const updateQuantity = (itemId, change) => {
         setQuantities(prev => ({
             ...prev,
