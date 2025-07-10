@@ -5,6 +5,7 @@ import App from './App';
 import {PrimeReactProvider} from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import 'primeicons/primeicons.css';
+import {AppProvider} from "./context/AppContext";
 
 
 const root = ReactDOM.createRoot(
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <PrimeReactProvider>
-            <App/>
+            <AppProvider>
+                <App/>
+            </AppProvider>
         </PrimeReactProvider>
     </React.StrictMode>
 );
