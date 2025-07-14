@@ -1,6 +1,6 @@
 import {Button} from "primereact/button";
 import {useNavigate} from "react-router-dom";
-import React from "react";
+import React, {useEffect} from "react";
 import {Dropdown} from 'primereact/dropdown';
 import {useAppContext} from "../context/AppContext";
 
@@ -8,12 +8,19 @@ import {useAppContext} from "../context/AppContext";
 const Home1 = () => {
     const Navigate = useNavigate();
     const {selectedCity, setSelectedCity} = useAppContext()
+
+    useEffect(() => {
+        if (selectedCity !== undefined && selectedCity !== '') {
+            Navigate('/about')
+        }
+    }, [selectedCity]);
+
     const cities = [
-        {name: 'Damascus'},
-        {name: 'Istanbul'},
-        {name: 'Riyadh'},
-        {name: 'Dubai'},
-        {name: 'Paris'}
+        {name: 'Damascus',value:'SYR'},
+        {name: 'Istanbul',value:'TU'},
+        {name: 'Riyadh',value:'KSA'},
+        {name: 'Dubai',value:'UAE'},
+        {name: 'Paris',value:'Paris'}
     ];
 
     return (
@@ -26,11 +33,10 @@ const Home1 = () => {
             <div>
                 <Dropdown value={selectedCity} onChange={(e) => {
                     setSelectedCity(e.value)
-                    if (selectedCity !== null){
-                        Navigate('/about')
-                    }
-                }} options={cities}
-                          optionLabel="name" showClear placeholder="Select a City"/>
+
+                }}
+
+                          options={cities} optionLabel="name" optionValue="value"  showClear placeholder="Select a City"/>
             </div>
         </div>
     )
