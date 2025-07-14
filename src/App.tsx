@@ -16,7 +16,7 @@ const App = () => {
             {/*<Quize1/>*/}
             {/*<Hw1/>*/}
             {/*<ContextUsage/>*/}
-            {/*<Navigation/>*/}
+            <Navigation/>
         </div>
     )
 }
