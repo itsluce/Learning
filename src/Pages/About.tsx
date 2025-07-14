@@ -1,22 +1,21 @@
-import {useNavigate} from "react-router-dom";
 import {Button} from "primereact/button";
+import {useNavigate} from "react-router-dom";
+import React from "react";
+import {useAppContext} from "../context/AppContext";
 
-const About = ()=>{
-        const Navigate = useNavigate();
 
+
+const About1= () => {
+    const Navigate = useNavigate();
+    const {selectedCity } = useAppContext()
 
     return(
         <div>
-            <h1>About</h1>
-            <p>Selected: {selectedCity || 'None'}</p>
             <h2>About Page</h2>
-            <Button onClick={() => {
-                Navigate('/')
-            }} label={'To Home Page'}/>
-            <Button onClick={() => {
-                Navigate(-1)
-            }} label={'Back'}/>
+            <p>Selected City: {selectedCity ? selectedCity.name : 'None'}</p>
+            <Button onClick={()=>{Navigate('/')}} label={'To Home Page'}/>
         </div>
     )
 }
-export default About
+
+export default About1
