@@ -2,19 +2,29 @@ import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {Send} from "lucide-react";
 import {useAppContext} from "../context/AppContext.tsx";
+import {useState} from "react";
 
 const MessageSenderComponent = () => {
-    const {message, setMessage, setChatMessage} = useAppContext()
+    const {message, setMessage, setChatMessage} = useAppContext();
+    const [isSending, setIsSending] = useState(false);
 
     const handleMessageSend = () => {
         if (message !== ''){
+            setIsSending(true);
+            
             const newMessage = {
                 id: Date.now().toString(),
                 text: message,
                 sender: 'user' as const,
-                timestamp: new Date()
+                timestamp: new Date(),
+                isNew: true
             };
-            setChatMessage((prev) => [...prev, newMessage]);
+            
+            // Add some delay to show sending animation
+            setTimeout(() => {
+                setChatMessage((prev) => [...prev, newMessage]);
+                setIsSending(false);
+            }, 200);
         }
         setMessage('')
     }
@@ -25,8 +35,8 @@ const MessageSenderComponent = () => {
             <InputText value={message} onChange={(e) => setMessage(e.target.value)} className={'w-full'}
                        placeholder={'Type your message ...'} 
                        onKeyDown={(e) => e.key === 'Enter' && handleMessageSend()}/>
-            <Button onClick={handleMessageSend} disabled={message === ''} size={'small'} 
-                    className="flex-shrink-0">
+            <Button onClick={handleMessageSend} disabled={message === '' || isSending} size={'small'} 
+                    className={`flex-shrink-0 ${isSending ? 'sending-animation' : ''}`}>
                 <Send size={16}/>
             </Button>
         </div>
