@@ -1,10 +1,17 @@
 import React, {createContext, type ReactNode, useContext, useState} from 'react';
 
+interface ChatMessage {
+    id: string;
+    text: string;
+    sender: 'user' | 'bot';
+    timestamp: Date;
+}
+
 interface AppContextType {
     message: string;
     setMessage: React.Dispatch<React.SetStateAction<string>>;
-    chatMessage: any[],
-    setChatMessage: React.Dispatch<React.SetStateAction<any[]>>;
+    chatMessage: ChatMessage[],
+    setChatMessage: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
