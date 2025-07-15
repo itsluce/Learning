@@ -16,7 +16,9 @@ const About1= () => {
             <p>Selected City: {selectedCity ? selectedCity : 'None'}</p>
             <Button onClick={()=>{
                 setSelectedCity('')
-                Navigate('/')}} label={'To Home Page'}/>
+                Navigate('/')}
+            }
+            label={'To Home Page'}/>
         </div>
     )
 }

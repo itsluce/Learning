@@ -7,6 +7,8 @@ interface AppContextType {
     setIsShow: React.Dispatch<React.SetStateAction<boolean>>
     selectedCity: any,
     setSelectedCity: React.Dispatch<React.SetStateAction<any>>
+    selectedFruit: any,
+    setSelectedFruit: React.Dispatch<React.SetStateAction<any>>
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -20,6 +22,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({children}) => {
     const [number, setNumber] = useState(0);
     const [isShow, setIsShow] = useState(false);
     const [selectedCity, setSelectedCity] = useState<any>('');
+    const [selectedFruit, setSelectedFruit] = useState<any>('')
 
     const contextValue: AppContextType = {
         number,
@@ -27,7 +30,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({children}) => {
         isShow,
         setIsShow,
         selectedCity,
-        setSelectedCity
+        setSelectedCity,
+        selectedFruit,
+        setSelectedFruit
     };
     return (
         <AppContext.Provider value={contextValue}>
