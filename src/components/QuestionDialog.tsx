@@ -9,6 +9,12 @@ const QuestionsDialog = () => {
         text: "",
         textArea: "",
     });
+    const [value, setValue] = useState([{}]);
+         const handleSave = () => {
+            if (inputValue.text && inputValue.textArea){
+                setValue(prev=>[...prev,inputValue]);
+            }
+         }
     return (
         <div>
             <h2> knowledge base </h2>
@@ -20,8 +26,10 @@ const QuestionsDialog = () => {
                     <InputText value={inputValue.text} onChange={(e)=>{setInputValue(prev=>({...prev,text:e.target.value}))}} placeholder={'Question or KeyWord'}/>
                     <InputTextarea value={inputValue.textArea} onChange={(e)=>{setInputValue(prev=>({...prev,textArea:e.target.value}))}} placeholder={'bot response'}/>
 
+                    <Button label={"Save"} onClick={handleSave}/>
                 </div>
             }
+
         </div>
     )
 }

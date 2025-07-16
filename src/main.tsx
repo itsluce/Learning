@@ -10,6 +10,7 @@ import {PrimeReactProvider} from "primereact/api";
 import {AppProvider} from "./context/AppContext.tsx";
 
 createRoot(document.getElementById('root')!).render(
+    /*سارية مش عارف هون */
     <StrictMode>
         <AppProvider>
             <PrimeReactProvider>
