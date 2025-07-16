@@ -3,6 +3,7 @@ import {Settings} from "lucide-react";
 import logo from '../assets/logo.jpg'
 import {Dialog} from "primereact/dialog";
 import {useState} from "react";
+import QuestionDialog from "./QuestionDialog.tsx";
 
 const Header = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -20,9 +21,9 @@ const Header = () => {
                     onHide={() => {setIsDialogOpen(false)}}
                     className="w-11 md:w-6">
                 <div className="p-4">
-                    <h2 className="text-xl font-semibold mb-3">Settings</h2>
-                    <p className="text-600">Configure your preferences here.</p>
+                   <QuestionDialog/>
                 </div>
+
             </Dialog>
         </div>
     )
