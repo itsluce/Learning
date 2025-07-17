@@ -19,7 +19,7 @@ const MainComponent = () => {
     }, [chatMessage]);
 
     return (
-        <div className={'w-full p-3 flex-1 overflow-y-auto'} 
+        <div className={'w-full p-2 sm:p-3 flex-1 overflow-y-auto'} 
              style={{backgroundColor: '#ffffff', maxHeight: 'calc(95vh - 200px)', overflowY: 'auto'}}>
 
             {chatMessage.map((msg)=>{
@@ -29,7 +29,7 @@ const MainComponent = () => {
                 
                 return(
                     <div key={msg.id} className={`flex mb-3 ${isUser ? 'justify-content-end' : 'justify-content-start'} ${animationClass}`}>
-                        <div className={`max-w-20rem p-3 border-round-2xl shadow-1 ${
+                        <div className={`w-full sm:max-w-20rem md:max-w-25rem lg:max-w-30rem p-2 sm:p-3 border-round-2xl shadow-1 ${
                             isUser 
                                 ? 'border-round-bottom-right-none' 
                                 : 'border-round-bottom-left-none'
@@ -37,7 +37,7 @@ const MainComponent = () => {
                             backgroundColor: isUser ? '#007bff' : '#f8f9fa',
                             color: isUser ? '#ffffff' : '#212529'
                         }}>
-                            <p className="m-0 line-height-3">{msg.text}</p>
+                            <p className="m-0 line-height-3 text-sm sm:text-base">{msg.text}</p>
                             <small className="block mt-1 text-xs" style={{
                                 color: isUser ? 'rgba(255,255,255,0.8)' : '#6c757d'
                             }}>

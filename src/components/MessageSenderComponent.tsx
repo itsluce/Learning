@@ -30,14 +30,14 @@ const MessageSenderComponent = () => {
     }
 
     return (
-        <div className={'flex flex-row align-items-center w-full gap-3 p-3 border-top-1'} 
+        <div className={'flex flex-row align-items-center w-full gap-2 sm:gap-3 p-2 sm:p-3 border-top-1'} 
              style={{backgroundColor: '#f8f9fa', borderColor: '#dee2e6'}}>
-            <InputText value={message} onChange={(e) => setMessage(e.target.value)} className={'w-full'}
+            <InputText value={message} onChange={(e) => setMessage(e.target.value)} className={'w-full text-sm sm:text-base'}
                        placeholder={'Type your message ...'} 
                        onKeyDown={(e) => e.key === 'Enter' && handleMessageSend()}/>
             <Button onClick={handleMessageSend} disabled={message === '' || isSending} size={'small'} 
-                    className={`flex-shrink-0 ${isSending ? 'sending-animation' : ''}`}>
-                <Send size={16}/>
+                    className={`flex-shrink-0 w-2rem h-2rem sm:w-auto sm:h-auto ${isSending ? 'sending-animation' : ''}`}>
+                <Send size={14} className="sm:w-1rem sm:h-1rem"/>
             </Button>
         </div>
     )
