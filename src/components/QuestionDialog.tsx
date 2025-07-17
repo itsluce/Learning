@@ -27,6 +27,7 @@ const QuestionsDialog = () => {
                     <InputTextarea value={inputValue.textArea} onChange={(e)=>{setInputValue(prev=>({...prev,textArea:e.target.value}))}} placeholder={'bot response'}/>
 
                     <Button label={"Save"} onClick={handleSave}/>
+                    <Button label={"Save"} onClick={handleSave}/>
                 </div>
             }
 
