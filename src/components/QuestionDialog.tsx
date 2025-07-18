@@ -19,7 +19,7 @@ const QuestionsDialog = () => {
             severity: 'success',
             summary: 'Success',
             detail: 'Knowledge Added Successfully',
-            life: 3000
+            life: 3500
         });
     };
     const handleSave = () => {
