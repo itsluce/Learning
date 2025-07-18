@@ -3,7 +3,7 @@ import {Settings} from "lucide-react";
 import logo from '../assets/logo.jpg'
 import {Dialog} from "primereact/dialog";
 import {useState} from "react";
-import QuestionDialog from "./QuestionDialog.tsx";
+import QuestionDialog from "../components/QuestionDialog.tsx";
 
 const Header = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);

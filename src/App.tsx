@@ -1,6 +1,6 @@
-import Header from "./components/Header.tsx";
-import MainComponent from "./components/MainComponent.tsx";
-import MessageSenderComponent from "./components/MessageSenderComponent.tsx";
+import Header from "./Screens/Header.tsx";
+import MainComponent from "./Screens/MainComponent.tsx";
+import MessageSenderComponent from "./Screens/MessageSenderComponent.tsx";
 
 function App() {
     return (

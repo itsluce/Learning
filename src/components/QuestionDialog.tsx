@@ -3,6 +3,7 @@ import {InputText} from "primereact/inputtext";
 import {InputTextarea} from "primereact/inputtextarea";
 import {useRef, useState} from "react";
 import {Toast} from "primereact/toast";
+import EditQuestion from "./EditQuestion.tsx";
 
 const QuestionsDialog = () => {
     const [show, setShow] = useState(false);
@@ -69,18 +70,7 @@ const QuestionsDialog = () => {
                     </div>
                 </div>
             }
-            <div className="grid">
-                {value.map((item: any, index) => {
-                    return (
-                        <div key={index} className="col-12">
-                            <div className="surface-card border-round p-3 shadow-1 mb-3">
-                                <h3 className="text-primary mb-2 text-sm sm:text-base">{item.text}</h3>
-                                <p className="text-600 line-height-3 m-0 text-xs sm:text-sm">{item.textArea}</p>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>
+            <EditQuestion value={value} setValue={setValue} />
             <Toast ref={toast}/>
         </div>
     )
