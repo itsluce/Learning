@@ -31,6 +31,10 @@ const EditQuestion = ({value, setValue}: {
         }
     }
 
+    const handleDelete = (item: any) => {
+        setValue(prev => prev.filter((i) => i !== item));
+    }
+
     return (
         <div>
             <div className="grid">
@@ -48,14 +52,15 @@ const EditQuestion = ({value, setValue}: {
                                     <div>
                                         <Button size={'small'} icon={'pi pi-pencil'} text
                                                 onClick={() => handleEdit(item, index)}/>
-                                        <Button size={'small'} icon={'pi pi-trash'} text severity={'danger'}/>
+                                        <Button size={'small'} icon={'pi pi-trash'} text severity={'danger'}
+                                                onClick={()=>handleDelete(item)}/>
                                     </div>
                                 </div>
                             }
                             {isEditMode && editingIndex === index &&
                                 <div
                                     className="surface-card border-round p-3 shadow-1 mb-3">
-                                    <div>
+                                    <div className="flex flex-column gap-3">
                                         <InputText
                                             value={editValues.text}
                                             onChange={(e) => {
@@ -75,7 +80,7 @@ const EditQuestion = ({value, setValue}: {
                                             rows={3}
                                         />
                                     </div>
-                                    <div className="flex justify-content-end gap-3">
+                                    <div className="flex justify-content-end gap-3 mt-3">
                                         <Button label={"Cancel"} size="small" onClick={() => {
                                             setIsEditMode(false);
                                             setEditingIndex(null);
