@@ -13,6 +13,8 @@ interface AppContextType {
     setMessage: React.Dispatch<React.SetStateAction<string>>;
     chatMessage: ChatMessage[],
     setChatMessage: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+    knowledgeValue: any[],
+    setKnowledgeValue: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -25,12 +27,15 @@ interface AppProviderProps {
 export const AppProvider: React.FC<AppProviderProps> = ({children}) => {
     const [message, setMessage] = useState<string>('');
     const [chatMessage, setChatMessage] = useState([]);
+    const [knowledgeValue, setKnowledgeValue] = useState<any[]>([]);
 
     const value: AppContextType = {
         message,
         setMessage,
         chatMessage,
-        setChatMessage
+        setChatMessage,
+        knowledgeValue,
+        setKnowledgeValue,
     };
 
     return (

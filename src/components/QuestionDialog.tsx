@@ -4,14 +4,15 @@ import {InputTextarea} from "primereact/inputtextarea";
 import {useRef, useState} from "react";
 import {Toast} from "primereact/toast";
 import EditQuestion from "./EditQuestion.tsx";
+import {useAppContext} from "../context/AppContext.tsx";
 
 const QuestionsDialog = () => {
+    const{knowledgeValue,setKnowledgeValue}=useAppContext()
     const [show, setShow] = useState(false);
     const [inputValue, setInputValue] = useState({
         text: "",
         textArea: "",
     });
-    const [value, setValue] = useState<any[]>([]);
     const toast = useRef(null);
 
     const showToaster = () => {
@@ -24,17 +25,16 @@ const QuestionsDialog = () => {
     };
     const handleSave = () => {
         if (inputValue.text && inputValue.textArea) {
-            setValue(prev => [...prev, inputValue]);
+            setKnowledgeValue(prev => [...prev, inputValue]);
             setInputValue({text: '', textArea: ''});
             setShow(false)
             showToaster()
         }
     }
-
     return (
         <div className="p-2 sm:p-4">
             <div className="flex flex-column sm:flex-row justify-content-between align-items-start sm:align-items-center mb-3 sm:mb-4 gap-2 sm:gap-0">
-                <h2 className="m-0 text-lg sm:text-xl"> Knowledge Base ({value.length}) </h2>
+                <h2 className="m-0 text-lg sm:text-xl"> Knowledge Base ({knowledgeValue.length}) </h2>
                 <Button label={show ? "Hide" : "Add"} severity={show ? 'danger' : 'success'} 
                         size="small" className="w-full sm:w-auto" onClick={() => {
                     setShow(!show)
@@ -70,7 +70,7 @@ const QuestionsDialog = () => {
                     </div>
                 </div>
             }
-            <EditQuestion value={value} setValue={setValue} />
+            <EditQuestion value={knowledgeValue} setValue={setKnowledgeValue} />
             <Toast ref={toast}/>
         </div>
     )

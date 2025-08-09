@@ -11,7 +11,6 @@ const EditQuestion = ({value, setValue}: {
     const [editingIndex, setEditingIndex] = useState<number | null>(null);
     const [editValues, setEditValues] = useState({text: '', textArea: ''});
 
-    console.log({value})
 
     const handleEdit = (item: any, index: number) => {
         setEditValues({text: item.text, textArea: item.textArea});
@@ -19,7 +18,6 @@ const EditQuestion = ({value, setValue}: {
         setIsEditMode(true);
     };
 
-    console.log({editValues})
 
     const handleSave = () => {
         if (editValues.text && editValues.textArea && editingIndex !== null) {
@@ -39,7 +37,6 @@ const EditQuestion = ({value, setValue}: {
         <div>
             <div className="grid">
                 {value?.map((item: any, index: number) => {
-                    console.log({item})
                     return (
                         <div key={index} className="col-12">
                             {!(isEditMode && editingIndex === index) &&
