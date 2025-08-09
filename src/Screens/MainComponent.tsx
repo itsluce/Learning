@@ -2,9 +2,10 @@ import {useAppContext} from "../context/AppContext.tsx";
 import {useEffect, useState} from "react";
 
 const MainComponent = () => {
-    const {chatMessage, knowledgeValue} = useAppContext();
+    const {chatMessage, setChatMessage, knowledgeValue} = useAppContext();
     const [animatingMessages, setAnimatingMessages] = useState<Set<string>>(new Set());
-    const [responseMessages, setResponseMessages] = useState<string>('');
+    const [processedMessages, setProcessedMessages] = useState<Set<string>>(new Set());
+
     useEffect(() => {
         const newMessages = chatMessage.filter(msg => msg.isNew);
         if (newMessages.length > 0) {
@@ -17,11 +18,33 @@ const MainComponent = () => {
             }, 300);
         }
     }, [chatMessage]);
+
     useEffect(() => {
-        if (chatMessage.some((item) => item.text === knowledgeValue[0]?.text)) {
-            setResponseMessages(knowledgeValue[0].textArea);
-        }
-    }, [chatMessage]);
+        const newUserMessages = chatMessage.filter(msg => 
+            msg.sender === 'user' && !processedMessages.has(msg.id)
+        );
+
+        newUserMessages.forEach(userMessage => {
+            const matchingKnowledge = knowledgeValue.find(knowledge => 
+                userMessage.text.toLowerCase().includes(knowledge.text.toLowerCase())
+            );
+
+            const responseText = matchingKnowledge 
+                ? matchingKnowledge.textArea 
+                : "I'm sorry, I don't understand that. Please try asking something else.";
+
+            const botResponse = {
+                id: `bot-${Date.now()}-${Math.random()}`,
+                text: responseText,
+                sender: 'bot' as const,
+                timestamp: new Date(),
+                isNew: true
+            };
+
+            setChatMessage(prev => [...prev, botResponse]);
+            setProcessedMessages(prev => new Set([...prev, userMessage.id]));
+        });
+    }, [chatMessage, knowledgeValue, processedMessages, setChatMessage]);
 
 
     return (
@@ -55,14 +78,6 @@ const MainComponent = () => {
                     </div>
                 )
             })}
-              {responseMessages && <div
-                className={`w-full sm:max-w-20rem md:max-w-25rem lg:max-w-30rem p-2 sm:p-3 border-round-2xl shadow-1 border-round-bottom-left-none`}
-                style={{
-                    backgroundColor: '#f8f9fa',
-                    color: '#212529'
-                }}>
-                <h2>{responseMessages}</h2>
-            </div>}
         </div>
     )
 }
